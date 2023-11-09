@@ -5,7 +5,6 @@ interface Props{
   onSubmit: (user: User) => void;
 }
 
-
 const UserForm: React.FC<Props> = ({onSubmit}) => {
   const [userData, setUserData] = useState<User>({
     id: 1,
@@ -20,7 +19,7 @@ const UserForm: React.FC<Props> = ({onSubmit}) => {
       ...prev,
       [e.target.name]: e.target.value,
     }))
-  }
+  };
 
   const checkboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.checked;

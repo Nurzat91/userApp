@@ -12,7 +12,7 @@ const UserItem: React.FC<Props> = ({userData}) => {
           <div className="card-body">
             <h5 className="card-title">Name: {userData.name}</h5>
             <p className="card-text">Email: {userData.email}</p>
-            <p className="card-text">Active: {userData.isActive}</p>
+            <p className="card-text">Active: {userData.isActive ? 'true' : 'false'}</p>
             <p className="card-text">Role: {userData.role}</p>
           </div>
         </div>
