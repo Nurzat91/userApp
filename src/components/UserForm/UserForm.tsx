@@ -1,8 +1,14 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import {User} from '../../../types';
 
-const UserForm = () => {
+interface Props{
+  onSubmit: (user: User) => void;
+}
+
+
+const UserForm: React.FC<Props> = ({onSubmit}) => {
   const [userData, setUserData] = useState<User>({
+    id: 1,
     name: '',
     email: '',
     isActive: false,
@@ -16,9 +22,30 @@ const UserForm = () => {
     }))
   }
 
+  const checkboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.checked;
+    setUserData((prev) => ({
+      ...prev,
+      isActive: value,
+    }));
+  };
+
+  const onSubmitForm = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    onSubmit(userData);
+    setUserData({
+      id:  Math.floor(Math.random() * 10),
+      name: '',
+      email: '',
+      isActive: false,
+      role: 'user',
+    });
+  };
+
 
   return (
-    <form>
+    <form onSubmit={onSubmitForm}>
       <h4>Add new users</h4>
       <div className="form-group">
         <label htmlFor="name">Name</label>
@@ -43,13 +70,13 @@ const UserForm = () => {
         />
       </div>
       <div className="form-check my-2">
-        <label htmlFor="isActive">Active</label>
+        <label htmlFor="checkbox">Active</label>
         <input
-          type="isActive"
+          type="checkbox"
           name="isActive"
-          id="isActive"
+          id="checkbox"
           checked={userData.isActive}
-          onChange={changeUsers}
+          onChange={checkboxChange}
           className="form-check-input"
         />
       </div>

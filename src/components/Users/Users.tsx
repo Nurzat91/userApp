@@ -10,8 +10,8 @@ const Users: React.FC<Props> = ({userData}) => {
   return (
     <div>
       <h4>Users</h4>
-      {userData.map((user, index) => (
-        <UserItem key={index} userData={user} />
+      {userData.map((user) => (
+        <UserItem key={user.id} userData={user} />
       ))}
     </div>
   );
